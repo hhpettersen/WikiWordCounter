@@ -156,8 +156,10 @@ private fun SearchBar(
             ),
             keyboardActions = KeyboardActions(
                 onSearch = {
-                    focusManager.clearFocus()
-                    onSearchClicked()
+                    if (areButtonsEnabled) {
+                        focusManager.clearFocus()
+                        onSearchClicked()
+                    }
                 }
             ),
             modifier = Modifier.weight(1f)

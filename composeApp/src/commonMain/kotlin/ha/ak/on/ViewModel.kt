@@ -27,6 +27,7 @@ class ViewModel {
         _state.value = fetchMyData(topic).fold(
             onSuccess = { apiResponse ->
                 val sanitizedText = sanitizeText(apiResponse.parse.text.content)
+                println(sanitizedText)
                 State.Success(
                     title = apiResponse.parse.title,
                     content = sanitizedText,
@@ -47,7 +48,7 @@ class ViewModel {
 
     private fun String.removeHtmlTags(): String {
         val tagRegex = Regex("<[^>]+>")
-        return replace(tagRegex, "")
+        return replace(tagRegex, " ")
     }
 
     private fun sanitizeText(htmlContent: String): String {
